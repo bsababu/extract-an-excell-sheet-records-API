@@ -1,0 +1,18 @@
+import { IsString,Matches,MaxLength,MinLength} from "class-validator";
+
+export class UserAuthenticationDto {
+
+    @IsString()
+    @MinLength(4)
+    @MaxLength(8)
+    username:string;
+
+
+    @IsString()
+    @MinLength(8)
+    @MaxLength(20)
+    @Matches(/((?=.*\d)|(?=.x\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, 
+    {message:'Password too weak'},
+    )
+    password:string;
+}
